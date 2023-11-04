@@ -16,8 +16,8 @@ import (
 
 func Routes_Setup(app *fiber.App){
 	app.Get("/",controller.BlogList)
-// 	app.Get("/:id",controller.BlogDetail)
-// 	app.Post("/",controller.BlogCreate)
-// 	app.Put("/:id",controller.BlogUpdate)
-// 	app.Delete("/:id",controller.BlogDelete)
+	app.Post("/",controller.BlogCreate)
+	app.Put("/:id",controller.BlogUpdate)
+	app.Delete("/:id",controller.BlogDelete)
+	// app.Get("/:id",controller.BlogDetail)
 }

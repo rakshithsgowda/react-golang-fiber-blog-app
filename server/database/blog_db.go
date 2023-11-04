@@ -1,6 +1,7 @@
 package database
 
 import (
+	"blog/model"
 	"log"
 
 	"gorm.io/driver/mysql"
@@ -24,6 +25,7 @@ func ConnectDB() {
 		panic("Database connection failed.")
 	}
 	log.Println("Connection successful")
+	db.AutoMigrate(new(model.Blog))
 
 	DBConnection = db
 }

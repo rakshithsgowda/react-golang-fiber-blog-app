@@ -7,9 +7,9 @@ package model
 // - image
 
 type Blog struct {
-	ID uint
+	ID uint `json:"id" gorm:"primaryKey"`
 
-	Title string
-	Post  string
-	Image string
+	Title string `json:"title" gorm:"not null;column:title;size:225"`
+	Post  string `json:"post" gorm:"not null;column:post;size:225"`
+	// Image string 
 }
