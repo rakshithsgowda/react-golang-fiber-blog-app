@@ -3,13 +3,18 @@ package main
 import (
 	"blog/database"
 	"blog/router"
+	"log"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
+	"github.com/joho/godotenv"
 )
 
 // initialize
 func init(){
+	if err:=godotenv.Load(".env");err!=nil{
+		log.Fatal("Error in loading .env file")
+	}
 	database.ConnectDB()
 }
 // connect to db

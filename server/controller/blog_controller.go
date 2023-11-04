@@ -3,6 +3,7 @@ package controller
 import (
 	"blog/database"
 	"blog/model"
+	"log"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -30,6 +31,22 @@ func BlogCreate(c *fiber.Ctx)error{
 		"statustext":"Ok",
 		"msg":"Add a Blog",
 	}
+	record:=new(model.Blog)
+
+	if err:=c.BodyParser(&record);err!=nil{
+		log.Println("Error in parsing request.")
+		context["msg"]="somehting went wrong"
+		context["statusText"]=""
+	}
+	result:=database.DBConnection.Create(record)
+	if result.Error!=nil{
+		log.Println("Eror in saving data")
+	}
+	context["data"]=record
+	context["statustext"]="Ok"
+	context["msg"]="Record saved successfully"
+
+
 	c.Status(201)
 	return c.JSON(context)
 }
